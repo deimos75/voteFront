@@ -4,8 +4,12 @@
 
 <script>
 import formLogIn from "./components/formLogIn";
-// eslint-disable-next-line no-unused-vars
-import { vuetify } from "../node_modules/vuetify";
+import Vue from "../node_modules/vue/dist/vue";
+import Vuetify from "../node_modules/vuetify";
+import "../node_modules/vuetify/dist/vuetify";
+
+Vue.use(Vuetify);
+
 export default {
   components: {
     formLogIn

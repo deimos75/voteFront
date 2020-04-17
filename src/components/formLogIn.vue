@@ -1,9 +1,8 @@
-/* eslint-disable prettier/prettier */
 <template lang="html">
   <section class="form-log-in">
     <form id="logIn" @submit="checkForm" action="" method="post">
       <div v-if="errors.length">
-        <b>Veuillez corriger les erreurs suivantes:</b>
+        <b>Erreur(s):</b>
         <ul>
           <li v-for="error in errors" :key="error.id">{{ error }}</li>
         </ul>
@@ -18,7 +17,12 @@
       <div>
         <label for="password">Mot de passe : </label>
         <br />
-        <input type="text" id="password" name="password" v-model="password" />
+        <input
+          type="password"
+          id="password"
+          name="password"
+          v-model="password"
+        />
       </div>
       <div>
         <v-btn id="connectButton" type="submit" outlined="true"
@@ -75,6 +79,7 @@ b {
 }
 #connectButton {
   margin-top: 15%;
+  color: white;
   background-color: #6ab86a;
 }
 #connectButton:hover {
