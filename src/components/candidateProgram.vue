@@ -10,7 +10,7 @@
       cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
       est laborum.
     </p>
-    <v-btn outlined color="success">Télécharger le programme</v-btn><br />
+    <v-btn id="downloadProgram" outlined>Télécharger le programme</v-btn><br />
     <router-link to="/listeDesCandidats">
       <v-btn id="accueilButton" type="">Liste des candidats</v-btn>
     </router-link>
@@ -35,5 +35,9 @@ h1 {
 #detailProgram {
   margin: 0 15% 0 15%;
   text-align: left;
+}
+#downloadProgram {
+  margin-top: 5%;
+  color: red;
 }
 </style>
