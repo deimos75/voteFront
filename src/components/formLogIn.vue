@@ -1,31 +1,42 @@
 <template lang="html">
   <section class="form-log-in">
-    <form id="logIn" @submit="checkForm" action="" method="post">
+    <form id="logIn" method="post">
       <div v-if="errors.length">
         <b>Erreur(s):</b>
-        <ul>
+        <ul id="listErrors">
           <li v-for="error in errors" :key="error.id">{{ error }}</li>
         </ul>
       </div>
       <br />
       <div>
-        <label for="username">Identifiant : </label>
+        <label for="username" class="label">Identifiant : </label>
         <br />
-        <input type="text" id="username" name="username" v-model="username" />
+        <input
+          type="text"
+          autocomplete="username"
+          id="username"
+          name="username"
+          v-model="username"
+          required="true"
+        />
       </div>
       <br />
       <div>
-        <label for="password">Mot de passe : </label>
+        <label for="password" class="label">Mot de passe : </label>
         <br />
         <input
           type="password"
+          autocomplete="current-password"
           id="password"
           name="password"
           v-model="password"
         />
       </div>
       <div>
-        <v-btn id="connectButton" type="submit" outlined="true"
+        <v-btn
+          id="connectButton"
+          type="submit"
+          @click.stop.prevent="checkForm()"
           >Se connecter</v-btn
         >
       </div>
@@ -36,10 +47,6 @@
 <script lang="js">
   export default  {
     name: 'form-log-in',
-    props: [],
-    mounted () {
-
-    },
     data () {
       return {
         errors: [],
@@ -48,7 +55,7 @@
       }
     },
     methods: {
-      checkForm: function(e) {
+      checkForm() {
         this.errors = [];
         if(!this.username){
           this.errors.push('L\'identifiant est requis.');
@@ -56,12 +63,20 @@
         if(!this.password){
           this.errors.push('Le mot de passe est requis.');
           }
-        e.preventDefault();
+        if(this.username && this.password) {
+          this.$router.push('/listeDesCandidats');
+        }
       }
     },
-    computed: {
+    watch: {
+      username(newName, oldName) {
+        console.log('---> WATCH NOM : ' + oldName + ' => '+ newName);
+      },
+      password(newPass, oldPass) {
+        console.log('---> WATCH MDP : ' + oldPass + ' => '+ newPass);
+      }
     }
-}
+};
 </script>
 
 <style>
@@ -78,11 +93,24 @@ b {
   color: red;
 }
 #connectButton {
-  margin-top: 15%;
-  color: white;
+  margin: 15% 0 15% 0;
   background-color: #6ab86a;
+  color: white;
+}
+#connectButton > span > a {
+  text-decoration: none;
+}
+a {
+  text-decoration: none;
 }
 #connectButton:hover {
   background-color: #a3e3a3;
+}
+#listErrors {
+  list-style: none;
+}
+.label {
+  float: left;
+  margin-left: 10%;
 }
 </style>
