@@ -2,14 +2,20 @@
   <div>
     <h1>Liste des candidats</h1>
     <div class="candidatesFlex">
-      <div v-for="candidat in candidates" :key="candidat.id" class="candidate">
-        <img src="../assets/teteCandidat.png" />
+      <div
+        v-for="(candidat, index) in candidates"
+        :key="candidat.id"
+        class="candidate"
+      >
+        <router-link :to="{name: 'candidateProgram', params: {id: index}}">
+          <img src="../assets/teteCandidat.png" />
+        </router-link>
         <p>{{ candidat }}</p>
       </div>
     </div>
-    <router-link to="/"
-      ><v-btn id="accueilButton" type="submit">Accueil</v-btn></router-link
-    >
+    <router-link to="/">
+      <v-btn id="accueilButton" type="submit">Accueil</v-btn>
+    </router-link>
   </div>
 </template>
 
@@ -27,8 +33,13 @@ export default {
         "Canditat F",
         "Canditat G",
         "Canditat H"
-      ]
+      ],
+      idDynamic: "/programmeCanditat/id=" + this.index
     };
+  },
+  idParam() {
+    console.log("---> Indice = " + this.index);
+    return "/programmeCanditat/id=" + this.index;
   }
 };
 </script>

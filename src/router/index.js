@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import formLogin from "../components/formLogIn";
 import listOfCandidates from "../components/listOfCandidates";
+import candidateProgram from "../components/candidateProgram";
 
 Vue.use(VueRouter);
 
@@ -15,6 +16,11 @@ const routes = [
     path: "/listeDesCandidats",
     name: "listOfCandidates",
     component: listOfCandidates
+  },
+  {
+    path: "/programmeCanditat/:id",
+    name: "candidateProgram",
+    component: candidateProgram
   }
 ];
 
