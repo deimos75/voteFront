@@ -10,7 +10,20 @@
       cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
       est laborum.
     </p>
-    <v-btn id="downloadProgram" outlined>Télécharger le programme</v-btn><br />
+
+    <a
+      :href="file.url"
+      v-text="file.label"
+      @click.prevent="downloadItem(file)"
+    />
+    <br />
+    <a href="./testProgrammeCandidat.pdf" download target="_blank">
+      Télécharger le programme TEST!
+    </a>
+    <a href="./../assets/testProgrammeCandidat.pdf" download target="_blank">
+      <v-btn id="downloadProgram" outlined>Télécharger le programme</v-btn>
+    </a>
+    <br />
     <router-link to="/listeDesCandidats">
       <v-btn id="accueilButton" type="">Liste des candidats</v-btn>
     </router-link>
@@ -18,12 +31,35 @@
 </template>
 
 <script>
+import Vue from "vue";
+import Axios from "axios";
+import VueAxios from "vue-axios";
+Vue.use(VueAxios, Axios);
+
 export default {
   name: "candidate-program",
   data() {
     return {
-      candidateNumber: parseInt(this.$route.params.id) + 1
+      candidateNumber: parseInt(this.$route.params.id) + 1,
+      file: {
+        url: "/#/../assets/testProgrammeCandidat.pdf",
+        label: "programme.pdf"
+      }
     };
+  },
+  methods: {
+    downloadItem({ url, label }) {
+      Axios.get(url, { responseType: "blob" })
+        .then(response => {
+          const blob = new Blob([response.data], { type: "application/pdf" });
+          const link = document.createElement("a");
+          link.href = URL.createObjectURL(blob);
+          link.download = label;
+          link.click();
+          URL.revokeObjectURL(link.href);
+        })
+        .catch(console.error);
+    }
   }
 };
 </script>
