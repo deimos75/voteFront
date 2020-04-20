@@ -1,5 +1,13 @@
 # app-vote
 
+## Prérequis
+```
+Installation de vue:          sudo npm install vue
+```
+```
+Installation du CLI de vue:   sudo npm -g i @vue/cli
+```
+
 ## Project setup
 ```
 npm install
