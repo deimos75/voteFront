@@ -3,7 +3,7 @@ import VueRouter from "vue-router";
 import formLogin from "../components/formLogIn";
 import listOfCandidates from "../components/listOfCandidates";
 import candidateProgram from "../components/candidateProgram";
-
+import resultats from "../components/resultats";
 Vue.use(VueRouter);
 
 const routes = [
@@ -21,6 +21,11 @@ const routes = [
     path: "/programmeCanditat/:id",
     name: "candidateProgram",
     component: candidateProgram
+  },
+  {
+    path: "/resultats",
+    name: "resultats",
+    component: resultats
   }
 ];
 

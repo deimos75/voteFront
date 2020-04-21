@@ -31,11 +31,6 @@
 </template>
 
 <script>
-import Vue from "vue";
-import Axios from "axios";
-import VueAxios from "vue-axios";
-Vue.use(VueAxios, Axios);
-
 export default {
   name: "candidate-program",
   data() {
@@ -49,7 +44,8 @@ export default {
   },
   methods: {
     downloadItem({ url, label }) {
-      Axios.get(url, { responseType: "blob" })
+      this.$http
+        .get(url, { responseType: "blob" })
         .then(response => {
           const blob = new Blob([response.data], { type: "application/pdf" });
           const link = document.createElement("a");
