@@ -3,6 +3,10 @@ import VueRouter from "vue-router";
 import formLogin from "../components/formLogIn";
 import listOfCandidates from "../components/listOfCandidates";
 import candidateProgram from "../components/candidateProgram";
+import formLoginCounting from "../components/formLogInCounting";
+import mention from "../components/mention";
+import listCounting from "../components/listOfResults";
+import resultats from "../components/resultats";
 
 Vue.use(VueRouter);
 
@@ -21,6 +25,26 @@ const routes = [
     path: "/programmeCanditat/:id",
     name: "candidateProgram",
     component: candidateProgram
+  },
+  {
+    path: "/depouillement",
+    name: "formLoginCounting",
+    component: formLoginCounting
+  },
+  {
+    path: "/depouillement/mentionsLegales",
+    name: "mention",
+    component: mention
+  },
+  {
+    path: "/depouillement/listeDesResultats",
+    name: "listCounting",
+    component: listCounting
+  },
+  {
+    path: "/resultats",
+    name: "resultats",
+    component: resultats
   }
 ];
 
