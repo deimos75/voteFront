@@ -96,7 +96,7 @@ export default {
         this.error =
           "Vous devez accepter les conditions pour procéder au vote.";
       } else {
-        console.log("---> A voté !");
+        console.log("---> A voté pour: " + this.modalParam1);
         this.hideMention();
         this.getDateNow();
         console.log("===> this.dateNow : " + this.dateNow);
