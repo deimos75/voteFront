@@ -40,6 +40,7 @@ export default {
       );
     },
     getVotes() {
+      this.totalVote = 0;
       this.$http
         .get("/getVoteStats")
         .then(response => {
