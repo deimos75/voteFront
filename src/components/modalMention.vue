@@ -16,35 +16,47 @@
         <br />
         <p>{{ modalParam2 }}</p>
       </div>
-      <div id="checkModal">
-        <input
-          type="checkbox"
-          id="checkBoxModal"
-          name="checkBoxModal"
-          @click="changeCheckModal"
-        />
-        <label for="checkBoxModal"
-          >En cochant la case je m’engage à certifier sur l’honneur ...</label
-        >
-      </div>
-
-      <!-- Bouton de validation -->
-      <v-btn id="buttonMention" @click="voter" :disabled="checkBoxDisabled">
-        {{ modalButton }}
-      </v-btn>
+      <!-- Formulaire de validation -->
+      <form id="validMention" method="post">
+        <div id="errorMessage" v-if="error">
+          <b>Erreur: {{ error }}</b>
+        </div>
+        <div id="checkModal">
+          <input type="checkbox" id="checkBoxModal" name="checkBoxModal" />
+          <label for="checkBoxModal"
+            >En cochant la case je m’engage à certifier sur l’honneur ...</label
+          >
+        </div>
+        <!-- Bouton de validation -->
+        <v-btn id="buttonMention" type="submit" @click.stop.prevent="voter">
+          {{ modalButton }}
+        </v-btn>
+      </form>
     </modal>
+
+    <!-- Modal de confirmation -->
+    <modal-confirmation
+      modalText="Votre vote a été pris en compte le:"
+      :modalParam="dateNow"
+      modalButton="Quitter"
+    ></modal-confirmation>
   </div>
 </template>
 
 <script>
+import modalConfirmation from "./modalConfirmation";
 export default {
   name: "modal-mention",
-  created() {
-    console.log("---> created()");
+  components: {
+    modalConfirmation
   },
   data() {
     return {
-      checkBoxDisabled: true
+      error: "",
+      validForm: false,
+      afficheConfirmation: false,
+      dateNow: String,
+      varTest: "Coucou!"
     };
   },
   props: {
@@ -52,12 +64,11 @@ export default {
     modalParam1: { type: String },
     modalParam2: { type: String },
     modalButton: { type: String }
-    //checkBoxDisabled //{ type: Boolean, default: true }
   },
   methods: {
     selectCandidat(index) {
       this.candidateName = this.candidates[index];
-      this.show();
+      this.showMention();
     },
     showMention() {
       this.$modal.show("mentionModal");
@@ -65,18 +76,36 @@ export default {
     hideMention() {
       this.$modal.hide("mentionModal");
     },
-    voter() {
-      console.log("---> A voté !");
+    showConfirmation() {
+      this.$modal.show("confirmationModal");
     },
-    changeCheckModal() {
-      if (this.checkBoxDisabled) {
-        this.checkBoxDisabled = false;
+    getDateNow() {
+      const today = new Date();
+      const day = today.getDate().toString();
+      let month = (today.getMonth() + 1).toString();
+      if (month.length < 2) {
+        month = "0" + month;
+      }
+      const year = today.getFullYear().toString();
+      this.dateNow = day + "/" + month + "/" + year;
+    },
+    voter() {
+      this.validForm = document.getElementById("checkBoxModal").checked;
+      this.error = "";
+      if (!this.validForm) {
+        this.error =
+          "Vous devez accepter les conditions pour procéder au vote.";
       } else {
-        this.checkBoxDisabled = true;
+        console.log("---> A voté !");
+        this.hideMention();
+        this.getDateNow();
+        console.log("===> this.dateNow : " + this.dateNow);
+        console.log("===> typeof this.dateNow : " + typeof this.dateNow);
+        console.log("===> typeof this.varTest : " + typeof this.varTest);
+        this.showConfirmation();
       }
     }
-  },
-  inject: ["checkBoxDisabled"]
+  }
 };
 </script>
 
@@ -97,5 +126,11 @@ export default {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 2%;
+}
+#validMention {
+  width: 100%;
+}
+#errorMessage {
+  margin-left: 2%;
 }
 </style>
