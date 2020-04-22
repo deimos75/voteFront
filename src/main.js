@@ -6,6 +6,8 @@ import vuetify from "./plugins/vuetify";
 import VModal from "vue-js-modal";
 import "@mdi/font/css/materialdesignicons.css";
 import VuetifyLib from "vuetify/lib";
+import API from "./api";
+Vue.prototype.$http = API;
 
 Vue.use(VModal);
 Vue.use(VuetifyLib);
