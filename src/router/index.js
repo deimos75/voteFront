@@ -4,7 +4,6 @@ import formLogin from "../components/formLogIn";
 import listOfCandidates from "../components/listOfCandidates";
 import candidateProgram from "../components/candidateProgram";
 import formLoginCounting from "../components/formLogInCounting";
-import mention from "../components/mention";
 import listCounting from "../components/listOfResults";
 import resultats from "../components/resultats";
 
@@ -30,11 +29,6 @@ const routes = [
     path: "/depouillement",
     name: "formLoginCounting",
     component: formLoginCounting
-  },
-  {
-    path: "/depouillement/mentionsLegales",
-    name: "mention",
-    component: mention
   },
   {
     path: "/depouillement/listeDesResultats",
