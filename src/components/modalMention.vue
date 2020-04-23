@@ -55,7 +55,7 @@ export default {
       error: "",
       validForm: false,
       afficheConfirmation: false,
-      dateNow: String,
+      dateNow: "",
       varTest: "Coucou!"
     };
   },
@@ -90,6 +90,7 @@ export default {
       this.dateNow = day + "/" + month + "/" + year;
     },
     voter() {
+      const candidat = this.modalParam1;
       this.validForm = document.getElementById("checkBoxModal").checked;
       this.error = "";
       if (!this.validForm) {
@@ -98,6 +99,15 @@ export default {
       } else if(this.modalButton == "Voter") {
         console.log("---> A voté pour: " + this.modalParam1);
         this.hideMention();
+        this.$http.post("/vote?name=" + candidat).then(
+          response => {
+            console.log("---> A voté !" + this.modalParam1);
+            console.log(response);
+          },
+          error => {
+            console.log(error);
+          }
+        );
         this.getDateNow();
         console.log("===> this.dateNow : " + this.dateNow);
         console.log("===> typeof this.dateNow : " + typeof this.dateNow);
