@@ -11,26 +11,12 @@
         <router-link :to="{ name: 'candidateProgram', params: { id: index } }">
           <img src="../assets/teteCandidat.png" />
         </router-link>
-        <p>{{ candidat }}</p>
-        <p> Résultat : </p>
-        <v-btn @click="selectCandidat(index)">{{ buttonSelect }}</v-btn>
-        <!-- Modal -->
-        <modal name="candidateModal">
-          <span
-            id="closeButton"
-            @click="hide"
-            class="mdi mdi-24px mdi-close-circle"
-          >
-          </span>
-          <img id="modalImg" src="../assets/teteCandidat.png" />
-          <div id="modalText">
-            <p>Vous avez sélectionné "{{ candidateName }}".</p>
-            <p>Pour procéder au vote, cliquez sur suivant.</p>
-          </div>
-          <v-btn id="nextButton">Suivant</v-btn>
-        </modal>
+        <p>{{ candidat.name }}</p>
+        <p> Résultat : {{ candidat.nombre }} </p>
+        <p> {{ candidat.taux }} % </p>
       </div>
     </div>
+    <v-btn @click="getVotes">Calculer vote</v-btn>
     <router-link to="/">
       <v-btn id="accueilButton">Accueil</v-btn>
     </router-link>
@@ -43,29 +29,61 @@ export default {
   data() {
     return {
       candidates: [
-        "Canditat A",
-        "Canditat B",
-        "Canditat C",
-        "Canditat D",
-        "Canditat E",
-        "Canditat F",
-        "Canditat G",
-        "Canditat H"
+        {name : "Macron", nombre: "0" , taux: 0},
+        {name : "Holland", nombre: "0" , taux: 0},
+        {name : "Sarkozy", nombre: "0" , taux: 0},
+        {name : "Canditat D", nombre: "0" , taux: 0},
+        {name : "Canditat E", nombre: "0" , taux: 0},
+        {name : "Canditat F", nombre: "0" , taux: 0},
+        {name : "Canditat G", nombre: "0" , taux: 0},
+        {name : "Canditat H", nombre: "0" , taux: 0}
       ],
       buttonSelect: "Select",
-      candidateName: ""
+      candidateName: "",
+      candidats: []
     };
   },
   methods: {
-    selectCandidat(index) {
-      this.candidateName = this.candidates[index];
-      this.show();
-    },
-    show() {
-      this.$modal.show("candidateModal");
-    },
-    hide() {
-      this.$modal.hide("candidateModal");
+    getVotes() {
+    this.totalVote = 0;
+    this.$http
+      .get("/getVoteStats")
+      .then(response => {
+      return response.data;
+      })
+      .then(fetchedData => {
+      const voteState = fetchedData;
+      console.log(voteState);
+      for (let voteStateKey of voteState) {
+        this.totalVote += voteStateKey.obtenu;
+      }
+      console.log(this.totalVote);
+        for (let stat of voteState) {
+            this.candidats.push({
+            voteFor: stat.voteFor,
+            obtenu: stat.obtenu,
+            taux: (stat.obtenu * 100.0) / this.totalVote
+        });
+        console.log("init: ", this.candidates);
+        for (let item of this.candidates){
+          // console.log("item", item.nombre);
+          //   console.log("candidats", this.candidats[0].voteFor);
+          for(let index of this.candidats){
+            if (index.voteFor == item.name) {
+              console.log("Yohan");
+              console.log("index", index.voteFor);
+              console.log("index", item.name);
+              // console.log(item);
+              // console.log("item", item.nombre);
+              // console.log("candidats", index.obtenu);
+              item.nombre = index.obtenu;
+              item.taux = index.taux;
+            }
+          }
+        }       
+      }
+      console.log(this.candidates);
+      });
     }
   }
 };

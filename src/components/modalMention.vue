@@ -95,7 +95,7 @@ export default {
       if (!this.validForm) {
         this.error =
           "Vous devez accepter les conditions pour procéder au vote.";
-      } else {
+      } else if(this.modalButton == "Voter") {
         console.log("---> A voté pour: " + this.modalParam1);
         this.hideMention();
         this.getDateNow();
@@ -103,6 +103,8 @@ export default {
         console.log("===> typeof this.dateNow : " + typeof this.dateNow);
         console.log("===> typeof this.varTest : " + typeof this.varTest);
         this.showConfirmation();
+      } else if(this.modalButton == "ACCEDER AUX RESULTATS") {
+        this.$router.push('/depouillement/listeDesResultats');
       }
     }
   }

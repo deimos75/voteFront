@@ -42,18 +42,35 @@
           dépouillement</p> </v-btn
         >
       </div>
+      <!-- Modale de mention légale et de vote -->
+      <modal-mention
+        :modalText="mentionDepouillement"
+        :modalParam1="description1"
+        :modalParam2="description2"
+        modalButton="ACCEDER AUX RESULTATS"
+      ></modal-mention>
     </form>
   </section>
 </template>
 
 <script lang="js">
+  import modalMention from "./modalMention";
   export default  {
     name: 'form-log-in',
+    components: {
+    modalMention
+    },
     data () {
       return {
         errors: [],
         username: null,
-        password: null
+        password: null,
+        
+        /** Paramètre pour remplir la modal mention */
+        mentionDepouillement: "Mention Légales : Par la présente je m’engage a respecter les règles du dépouillement.",
+        description1: "",
+        description2: "",
+        checkDisabledMention: true
       }
     },
     methods: {
@@ -66,8 +83,14 @@
           this.errors.push('Le mot de passe est requis.');
           }
         if(this.username && this.password) {
-          this.$router.push('/depouillement/mentionsLegales');
+          this.showMention();
         }
+      },
+      showMention() {
+      this.$modal.show("mentionModal");
+      },
+      hideMention() {
+        this.$modal.hide("mentionModal");
       }
     },
     watch: {
