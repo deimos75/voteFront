@@ -86,8 +86,9 @@ export default {
       if (month.length < 2) {
         month = "0" + month;
       }
+      const heure = today.getHours() + ":" + today.getMinutes() + ":" +today.getSeconds();
       const year = today.getFullYear().toString();
-      this.dateNow = day + "/" + month + "/" + year;
+      this.dateNow = day + "/" + month + "/" + year + "  à " + heure;
     },
     voter() {
       const candidat = this.modalParam1;

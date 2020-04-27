@@ -4,7 +4,7 @@
       <router-link to="/listeDesCandidats">
         <img src="./logo.png" alt="Pull Chain" class="logo">
       </router-link>
-      <v-toolbar-title style="margin-left: 10px"> Pull Chain</v-toolbar-title>
+      <v-toolbar-title style="margin-left: 10px"> Poll Chain</v-toolbar-title>
     </v-app-bar>
     <v-app>
       <router-view />

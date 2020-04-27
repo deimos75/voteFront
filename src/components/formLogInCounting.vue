@@ -1,5 +1,8 @@
 <template lang="html">
   <section class="form-log-in">
+    <div>
+      <router-link to="/"><img src="../assets/logo.png" alt="Pull Chain"> </router-link>
+    </div>
     <form id="logIn" method="post">
       <div v-if="errors.length">
         <b>Erreur(s):</b>
@@ -37,10 +40,9 @@
           id="connectButtonCounting"
           type="submit"
           @click.stop.prevent="checkForm()">
-          <p>Se connecter au
+          Se connecter au
           <br/>
-          dépouillement</p> </v-btn
-        >
+          dépouillement </v-btn>
       </div>
       <!-- Modale de mention légale et de vote -->
       <modal-mention
@@ -123,6 +125,7 @@ b {
   color: white;
 }
 #connectButtonCounting > span > a {
+
   text-decoration: none;
 }
 a {
@@ -138,4 +141,5 @@ a {
   float: left;
   margin-left: 10%;
 }
+
 </style>
