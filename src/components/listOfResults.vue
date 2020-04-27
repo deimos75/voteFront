@@ -13,11 +13,10 @@
         </router-link>
         <p>{{ candidat.name }}</p>
         <p> Résultat : {{ candidat.nombre }} </p>
-        <p> {{ candidat.taux }} % </p>
+        <p> {{ formatTaux(candidat.taux) }} % </p>
       </div>
     </div>
-    <v-btn @click="getVotes">Calculer vote</v-btn>
-    <router-link to="/">
+    <router-link to="/depouillement">
       <v-btn id="accueilButton">Accueil</v-btn>
     </router-link>
   </div>
@@ -29,14 +28,14 @@ export default {
   data() {
     return {
       candidates: [
-        {name : "Macron", nombre: "0" , taux: 0},
-        {name : "Holland", nombre: "0" , taux: 0},
-        {name : "Sarkozy", nombre: "0" , taux: 0},
-        {name : "Canditat D", nombre: "0" , taux: 0},
-        {name : "Canditat E", nombre: "0" , taux: 0},
-        {name : "Canditat F", nombre: "0" , taux: 0},
-        {name : "Canditat G", nombre: "0" , taux: 0},
-        {name : "Canditat H", nombre: "0" , taux: 0}
+        {name : "Candidat A", nombre: "0" , taux: 0},
+        {name : "Candidat B", nombre: "0" , taux: 0},
+        {name : "Candidat C", nombre: "0" , taux: 0},
+        {name : "Candidat D", nombre: "0" , taux: 0},
+        {name : "Candidat E", nombre: "0" , taux: 0},
+        {name : "Candidat F", nombre: "0" , taux: 0},
+        {name : "Candidat G", nombre: "0" , taux: 0},
+        {name : "Candidat H", nombre: "0" , taux: 0}
       ],
       buttonSelect: "Select",
       candidateName: "",
@@ -84,7 +83,13 @@ export default {
       }
       console.log(this.candidates);
       });
+    },
+    formatTaux(val){
+      return val.toFixed(2);
     }
+  },
+  beforeMount(){
+    this.getVotes();
   }
 };
 </script>
