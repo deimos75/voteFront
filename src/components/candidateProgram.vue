@@ -10,16 +10,6 @@
       cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
       est laborum.
     </p>
-
-    <a
-      :href="file.url"
-      v-text="file.label"
-      @click.prevent="downloadItem(file)"
-    />
-    <br />
-    <a href="./testProgrammeCandidat.pdf" download target="_blank">
-      Télécharger le programme TEST!
-    </a>
     <a href="./../assets/testProgrammeCandidat.pdf" download target="_blank">
       <v-btn id="downloadProgram" outlined>Télécharger le programme</v-btn>
     </a>

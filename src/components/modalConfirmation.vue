@@ -16,9 +16,11 @@
       </div>
 
       <!-- Bouton pour quitter -->
-      <v-btn id="buttonConfirmation" @click="hideConfirmation">
-        {{ modalButton }}
-      </v-btn>
+      <router-link to="/">
+        <v-btn id="buttonConfirmation" @click="hideConfirmation">
+          {{ modalButton }}
+        </v-btn>
+      </router-link>
     </modal>
   </div>
 </template>

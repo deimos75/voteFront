@@ -1,5 +1,8 @@
 <template lang="html">
   <section class="form-log-in">
+    <div>
+      <router-link to="/"><img src="../assets/logo.png" alt="Pull Chain"> </router-link>
+    </div>
     <form id="logIn" method="post">
       <div v-if="errors.length">
         <b>Erreur(s):</b>
@@ -68,14 +71,6 @@
         }
       }
     },
-    watch: {
-      username(newName, oldName) {
-        console.log('---> WATCH NOM : ' + oldName + ' => '+ newName);
-      },
-      password(newPass, oldPass) {
-        console.log('---> WATCH MDP : ' + oldPass + ' => '+ newPass);
-      }
-    }
 };
 </script>
 

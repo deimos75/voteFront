@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div class="logo">
+      <router-link to="/"><img src="../assets/logo.png" alt="Pull Chain"> </router-link>
+    </div>
     <h1>Liste des candidats</h1>
     <div class="candidatesFlex">
       <!-- Boucle sur les candidats -->
@@ -56,14 +59,14 @@ export default {
   data() {
     return {
       candidates: [
-        "Canditat A",
-        "Canditat B",
-        "Canditat C",
-        "Canditat D",
-        "Canditat E",
-        "Canditat F",
-        "Canditat G",
-        "Canditat H"
+        "Candidat A",
+        "Candidat B",
+        "Candidat C",
+        "Candidat D",
+        "Candidat E",
+        "Candidat F",
+        "Candidat G",
+        "Candidat H"
       ],
       buttonSelect: "Select",
       candidateName: "",
