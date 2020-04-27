@@ -1,8 +1,5 @@
 <template>
   <div>
-    <div class="logo">
-      <router-link to="/"><img src="../assets/logo.png" alt="Pull Chain"> </router-link>
-    </div>
     <h1>Liste des candidats</h1>
     <div class="candidatesFlex">
       <!-- Boucle sur les candidats -->
