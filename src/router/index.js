@@ -6,7 +6,7 @@ import candidateProgram from "../components/candidateProgram";
 import formLoginCounting from "../components/formLogInCounting";
 import listCounting from "../components/listOfResults";
 import resultats from "../components/resultats";
-
+import exampleConnexionVote from "../components/exampleConnexionVote";
 Vue.use(VueRouter);
 
 const routes = [
@@ -39,6 +39,11 @@ const routes = [
     path: "/resultats",
     name: "resultats",
     component: resultats
+  },
+  {
+    path: "/exampleConnexionVote",
+    name: "exampleConnexionVote",
+    component: exampleConnexionVote
   }
 ];
 
