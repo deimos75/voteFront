@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="listOfCandidatesBody">
     <h1>Liste des candidats</h1>
     <div class="candidatesFlex">
       <!-- Boucle sur les candidats -->
@@ -13,7 +13,7 @@
           <img src="../assets/teteCandidat.png" />
         </router-link>
         <p>{{ candidat }}</p>
-        <v-btn @click="selectCandidat(index)">{{ buttonSelect }}</v-btn>
+        <v-btn @click="selectCandidat(index)" style="background-color: #1a237e; color: white;">{{ buttonSelect }}</v-btn>
 
         <!-- Modale de séléction du candidat -->
         <modal name="candidateModal">
@@ -40,9 +40,6 @@
       :modalParam2="candidateDescription"
       modalButton="Voter"
     ></modal-mention>
-    <router-link to="/">
-      <v-btn id="accueilButton">Accueil</v-btn>
-    </router-link>
   </div>
 </template>
 
@@ -98,10 +95,14 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 body {
   text-align: center;
   margin: 5% 20% 0 20%;
+  background-color: #1a237e;
+}
+.listOfCandidatesBody{
+  background-color: white;
 }
 
 .candidatesFlex {

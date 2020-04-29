@@ -1,19 +1,18 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import formLogin from "../components/formLogIn";
 import listOfCandidates from "../components/listOfCandidates";
 import candidateProgram from "../components/candidateProgram";
-import formLoginCounting from "../components/formLogInCounting";
 import listCounting from "../components/listOfResults";
 import resultats from "../components/resultats";
-import exampleConnexionVote from "../components/exampleConnexionVote";
+import ConnexionVotant from "../components/ConnexionVotant";
+import ConnexionDepouilleur from "../components/ConnexionDepouilleur";
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "formLogin",
-    component: formLogin
+    name: "ConnexionVotant",
+    component: ConnexionVotant
   },
   {
     path: "/listeDesCandidats",
@@ -27,8 +26,8 @@ const routes = [
   },
   {
     path: "/depouillement",
-    name: "formLoginCounting",
-    component: formLoginCounting
+    name: "ConnexionDepouilleur",
+    component: ConnexionDepouilleur
   },
   {
     path: "/depouillement/listeDesResultats",
@@ -39,11 +38,6 @@ const routes = [
     path: "/resultats",
     name: "resultats",
     component: resultats
-  },
-  {
-    path: "/exampleConnexionVote",
-    name: "exampleConnexionVote",
-    component: exampleConnexionVote
   }
 ];
 
