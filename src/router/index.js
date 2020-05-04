@@ -6,6 +6,8 @@ import listCounting from "../components/listOfResults";
 import resultats from "../components/resultats";
 import ConnexionVotant from "../components/ConnexionVotant";
 import ConnexionDepouilleur from "../components/ConnexionDepouilleur";
+import chart from "../components/chart";
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -38,6 +40,11 @@ const routes = [
     path: "/resultats",
     name: "resultats",
     component: resultats
+  },
+  {
+    path: "/chart",
+    name: "chart",
+    component: chart
   }
 ];
 
